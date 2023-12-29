@@ -13,7 +13,9 @@ const MainArea = styled.div`
 function Main(props) {
 
   const [data, setData] = useState([]);
+  const [Isdata, setIsData] = useState([]);
   const [value, setValue] = useState('');
+  const [num, setNum] = useState([]);
   const change = (e) => {
     setValue(e.target.value)
   };
@@ -25,6 +27,15 @@ function Main(props) {
     setValue('')
   };
   
+  
+  // const random = Math.random()
+
+  const handleRandom = () => {
+    const menuNum = Math.floor(Math.random() * data.length);
+    setNum(data[menuNum])
+    setIsData(prev => [...prev, num])
+    
+  };
 
 
 
@@ -33,7 +44,8 @@ function Main(props) {
         <label htmlFor='name'>이름쓰기</label>
         <input type='text' onChange={change} value={value} id='name'></input>
         <button type='button' onClick={handleInsert}>입력</button>
-
+        <button type='button' onClick={handleRandom}>추첨</button>
+        <p>{num}</p>
       {data?.map((data) => {
         return (
           <p>{data}</p>
